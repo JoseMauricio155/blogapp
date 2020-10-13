@@ -24,7 +24,8 @@ export class InicioComponent implements OnInit {
   llenarTemas(){
     this.datos.getTemas().subscribe(resp => {
       this.temas = resp;
-      //console.log(resp);
+      console.log(resp);
+      console.log("yeaaah");
     }, error => {
       console.log(error);
       if(error.status==408) this.router.navigate(['']);

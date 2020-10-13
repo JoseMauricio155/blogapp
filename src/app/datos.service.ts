@@ -50,7 +50,6 @@ export class DatosService {
     Params = Params.append('pass', p);
 
     return this.http.get(URL + "login.php",{params:Params});
-
   }
 
   getTemas(){
@@ -59,6 +58,7 @@ export class DatosService {
     
     return this.http.get(URL + "temas.php", {headers:Headers});
   }
+  
 
   postTema(tema){
     let Headers = new HttpHeaders();
@@ -130,5 +130,43 @@ export class DatosService {
 
     return this.http.delete(URL + "mensajes.php", {headers: Headers, params: Params});
   }
+  //usuarios
+  getUsuarios(){
+    let Headers = new HttpHeaders();
+    Headers = Headers.append('Authorization', this.cuenta.token);
+    
+    return this.http.get(URL + "usuarios.php", {headers:Headers});
+  }
+  postUsuario(usuarios){
+    let Headers = new HttpHeaders();
+    Headers = Headers.append('Authorization', this.cuenta.token);
+    let formData = new FormData();
+    formData.append('user', usuarios.user);
+    formData.append('pass', usuarios.pass);
+    formData.append('tipo',usuarios.tipo);
+    formData.append('nombre',usuarios.nombre);
 
+    return this.http.post(URL + "usuarios.php", formData, {headers:Headers});
+  }
+  putUsuarios(usuarios){
+    let Headers = new HttpHeaders();
+    Headers = Headers.append('Authorization', this.cuenta.token);
+    
+    let Params = new HttpParams();
+    Params = Params.append('user', usuarios.user);
+    Params = Params.append('pass', usuarios.pass);
+    Params = Params.append('tipo',usuarios.tipo);
+    Params = Params.append('nombre',usuarios.nombre);
+
+    return this.http.put(URL + "usuarios.php", null, {headers: Headers, params: Params});
+  }
+  deleteUsuarios(usuarios){
+    let Headers = new HttpHeaders();
+    Headers = Headers.append('Authorization', this.cuenta.token);
+    
+    let Params = new HttpParams();
+    Params = Params.append('user', usuarios.user);
+
+    return this.http.delete(URL + "usuarios.php", {headers: Headers, params: Params});
+  }
 }

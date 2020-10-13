@@ -29,7 +29,7 @@ export class MensajesComponent implements OnInit {
   llenarMensajes(){
     this.datos.getMensajes(this.tema.idtema).subscribe(resp => {
       this.mensajes = resp;
-      //console.log(resp);
+      console.log(resp);
     }, error => {
       console.log(error);
     })
